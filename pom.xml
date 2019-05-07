@@ -8,10 +8,14 @@
     <artifactId>candy</artifactId>
     <version>0.1</version>
     <modules>
+
+
         <module>candy-nucleo</module>
         <module>candy-finanzas</module>
         <module>candy-web</module>
         <module>candy-ear</module>
+
+
     </modules>
     <packaging>pom</packaging>
     <name>Candy</name>
