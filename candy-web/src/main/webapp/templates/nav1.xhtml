@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<header id="sc-header">
+    <nav class="uk-navbar uk-navbar-container" data-uk-navbar="mode: click; duration: 360">
+        <div class="uk-navbar-left nav-overlay-small uk-margin-right">
+            <a href="#" id="sc-sidebar-main-toggle"><i class="mdi mdi-backburger sc-menu-close"/><i class="mdi mdi-menu sc-menu-open"/></a>
+            <div class="sc-brand uk-visible@s">
+                <h:link outcome="../resources/administrador/dashboard" ><img src="../resources/img/logo.png" alt=""/></h:link>
+            </div>
+        </div>
+        <div class="nav-overlay nav-overlay-small uk-navbar-right uk-flex-1" hidden="">
+            <a class="uk-navbar-toggle uk-visible@m" data-uk-toggle="target: .nav-overlay; animation: uk-animation-slide-top" href="#"><i class="mdi mdi-close sc-icon-24"/></a>
+            <a class="uk-navbar-toggle uk-hidden@m uk-padding-remove-left" data-uk-toggle="target: .nav-overlay-small; animation: uk-animation-slide-top" href="#"><i class="mdi mdi-close sc-icon-24"/></a>
+            <div class="uk-navbar-item uk-width-expand uk-padding-remove-right">
+                <form class="uk-search uk-search-navbar uk-width-1-1 uk-flex">
+                    <input class="uk-search-input" type="search" placeholder="Search..." autofocus=""/>
+                    <button class="sc-button sc-button-small sc-button-icon sc-button-flat uk-margin-small-left" type="button"><i class="mdi mdi-magnify sc-icon-24 md-color-white"/></button>
+                </form>
+            </div>
+        </div>
+        <div class="nav-overlay nav-overlay-small uk-navbar-right">
+            <ul class="uk-navbar-nav">
+                <li>
+                    <a class="uk-navbar-toggle uk-visible@m" href="#" data-uk-toggle="target: .nav-overlay; animation: uk-animation-slide-top"><i class="mdi mdi-magnify"/></a>
+                    <a class="uk-navbar-toggle uk-hidden@m" href="#" id="sc-search-main-toggle-mobile" data-uk-toggle="target: .nav-overlay-small; animation: uk-animation-slide-top"><i class="mdi mdi-magnify"/></a>
+                </li>
+                <li class="uk-visible@l">
+                    <a href="#" id="sc-js-fullscreen-toggle"><i class="mdi mdi-fullscreen sc-js-el-hide"/><i class="mdi mdi-fullscreen-exit sc-js-el-show"/></a>
+                </li>
+                <li class="uk-visible@s">
+                    <a href="#" class="sc-text-semibold">
+                        EN
+                    </a>
+                    <div class="uk-navbar-dropdown uk-dropdown-small">
+                        <ul class="uk-nav uk-navbar-dropdown-nav">
+                            <li><a href="#">Deutsch</a></li>
+                            <li><a href="#">Español</a></li>
+                            <li><a href="#">Français</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="mdi mdi-email"/>
+                    </a>
+                    <div class="uk-navbar-dropdown sc-padding-remove">
+                        <div class="uk-panel uk-panel-scrollable uk-height-medium">
+                            <ul class="uk-list uk-list-divider sc-js-edge-fix">
+                                <li class="sc-list-group">
+                                    <div class="sc-list-addon">
+                                        <span class="sc-avatar-initials md-color-white md-bg-red-500" title="hschulist">MO</span>
+                                    </div>
+                                    <a href="#" class="sc-list-body uk-display-block">
+                                        <span class="uk-text-small uk-text-muted uk-width-expand">06:36 PM</span>
+                                        <span class="uk-display-block uk-text-truncate">Nam quis eligendi quidem sint quibusdam voluptatum eveniet molestiae.</span>
+                                    </a>
+                                </li>
+                                <li class="sc-list-group">
+                                    <div class="sc-list-addon">
+                                        <img src="resources/img/avatars/avatar_05_sm.png" class="sc-avatar " alt="terry.audra"/>
+                                    </div>
+                                    <a href="#" class="sc-list-body uk-display-block">
+                                        <div class="uk-text-small uk-text-muted uk-width-expand">Apr 9, 2019</div>
+                                        <span class="uk-display-block uk-text-truncate">Et inventore aut ut quaerat itaque et.</span>
+                                    </a>
+                                </li>
+                                <li class="sc-list-group">
+                                    <div class="sc-list-addon">
+                                        <span class="sc-avatar-initials md-color-white md-bg-light-green-500" title="smith.julie">KS</span>
+                                    </div>
+                                    <a href="#" class="sc-list-body uk-display-block">
+                                        <span class="uk-text-small uk-text-muted uk-width-expand">04:36 PM</span>
+                                        <span class="uk-display-block uk-text-truncate">Iusto mollitia ut quis ea similique explicabo laborum animi est.</span>
+                                    </a>
+                                </li>
+                                <li class="sc-list-group">
+                                    <div class="sc-list-addon">
+                                        <img src="resources/img/avatars/avatar_06_sm.png" class="sc-avatar " alt="annamae05"/>
+                                    </div>
+                                    <a href="#" class="sc-list-body uk-display-block">
+                                        <span class="uk-text-small uk-text-muted uk-width-expand">Apr 8, 2019</span>
+                                        <span class="uk-display-block uk-text-truncate">Consectetur laudantium facilis perferendis aut fuga.</span>
+                                    </a>
+                                </li>
+                                <li class="sc-list-group">
+                                    <div class="sc-list-addon">
+                                        <img src="resources/img/avatars/avatar_02_sm.png" class="sc-avatar " alt="metz.darion"/>
+                                    </div>
+                                    <a href="#" class="sc-list-body uk-display-block">
+                                        <span class="uk-text-small uk-text-muted uk-width-expand">Apr 6, 2019</span>
+                                        <span class="uk-display-block uk-text-truncate">Repellat voluptatibus praesentium asperiores ex accusamus doloribus qui quo.</span>
+                                    </a>
+                                </li>
+                                <li class="sc-list-group">
+                                    <div class="sc-list-addon">
+                                        <span class="sc-avatar-initials md-color-white md-bg-purple-500" title="sidney.dickens">FA</span>
+                                    </div>
+                                    <a href="#" class="sc-list-body uk-display-block">
+                                        <span class="uk-text-small uk-text-muted uk-width-expand">Apr 4, 2019</span>
+                                        <span class="uk-display-block uk-text-truncate">Saepe id voluptatem totam ut quasi quasi impedit iure facere.</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <a href="pages-mailbox.html" class="uk-flex uk-text-small sc-padding-small-ends sc-padding-medium">Show all in mailbox</a>
+                    </div>
+                </li>
+                <li class="uk-visible@s">
+                    <a href="#">
+						<span class="mdi mdi-bell uk-display-inline-block">
+							<span class="sc-indicator md-bg-color-red-600"/>
+						</span>
+                    </a>
+                    <div class="uk-navbar-dropdown md-bg-grey-100">
+                        <div class="sc-padding-medium sc-padding-small-ends">
+                            <div class="uk-text-right uk-margin-medium-bottom">
+                                <button class="sc-button sc-button-outline sc-button-mini sc-js-clear-alerts">Clear all</button>
+                            </div>
+                            <ul class="uk-list uk-margin-remove" id="sc-header-alerts">
+                                <li class="sc-border sc-round md-bg-white">
+                                    <div class="uk-margin-right uk-margin-small-left"><i class="mdi mdi-alert-outline md-color-red-600"/></div>
+                                    <div class="uk-flex-1 uk-text-small">
+                                        Information Page Not Found!
+                                    </div>
+                                </li>
+                                <li class="uk-margin-small-top sc-border sc-round md-bg-white">
+                                    <div class="uk-margin-right uk-margin-small-left"><i class="mdi mdi-email-check-outline md-color-blue-600"/></div>
+                                    <div class="uk-flex-1 uk-text-small">
+                                        A new password has been sent to your e-mail address.
+                                    </div>
+                                </li>
+                                <li class="uk-margin-small-top sc-border sc-round md-bg-white">
+                                    <div class="uk-margin-right uk-margin-small-left"><i class="mdi mdi-alert-outline md-color-red-600"/></div>
+                                    <div class="uk-flex-1 uk-text-small">
+                                        You do not have permission to access the API!
+                                    </div>
+                                </li>
+                                <li class="uk-margin-small-top sc-border sc-round md-bg-white">
+                                    <div class="uk-margin-right uk-margin-small-left"><i class="mdi mdi-check-all md-color-light-green-600"/></div>
+                                    <div class="uk-flex-1 uk-text-small">
+                                        Your enquiry has been successfully sent.
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="uk-text-medium uk-text-center sc-js-empty-message sc-text-semibold sc-padding-ends" style="display: none">No alerts!</div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a href="#"><img src="resources/img/avatars/avatar_default_sm.png" alt=""/></a>
+                    <div class="uk-navbar-dropdown uk-dropdown-small">
+                        <ul class="uk-nav uk-nav-navbar">
+                            <li><a href="pages-user_profile.html">Profile</a></li>
+                            <li><a href="pages-settings.html">Settings</a></li>
+                            <li><a href="login_page.html">Log Out</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <a href="#" class="sc-js-offcanvas-toggle md-color-white uk-margin-left uk-hidden@l"><i class="mdi mdi-menu sc-offcanvas-open"/><i class="mdi mdi-arrow-right sc-offcanvas-close"/></a>
+        </div>
+    </nav>
+</header>
+</html>
