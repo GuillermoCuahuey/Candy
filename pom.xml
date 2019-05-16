@@ -12,6 +12,7 @@
         <module>candy-finanzas</module>
         <module>candy-web</module>
         <module>candy-ear</module>
+        <module>candy-alumno</module>
     </modules>
     <packaging>pom</packaging>
     <name>Candy</name>

@@ -1,12 +1,16 @@
-package com.mx.candy.entidad;
+package com.mx.candy.alumno;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 @Entity
-@Table(name = "alumno", schema = "finanzas",
+@Table(name = "alumno", schema = "alumno",
         uniqueConstraints = @UniqueConstraint(columnNames = {"curp"}))
+@NamedQueries( value = {
+        @NamedQuery(name = "AlumnoEntidad.busca", query = "SELECT a FROM AlumnoEntidad a LEFT JOIN FETCH a.estatusEntidad e")
+})
 public class AlumnoEntidad {
 
     private String matricula;
@@ -15,7 +19,11 @@ public class AlumnoEntidad {
     private String apellidoPaterno;
     private String apellidoMaterno;
     private EstatusEntidad estatusEntidad;
-    private ProgramaEntidad programaEntidad;
+    private String direccion;
+    private String celular;
+    private String telefono;
+    private String rfc;
+    private Date nacimiento;
 
     @Id
     @Column(name = "matricula")
@@ -86,13 +94,63 @@ public class AlumnoEntidad {
         this.estatusEntidad = estatusEntidad;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "id_estatus")
-    public ProgramaEntidad getProgramaEntidad() {
-        return programaEntidad;
+    @Basic
+    @Column(name = "direccion")
+    @NotNull
+    @Size(min = 3, max = 200)
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setProgramaEntidad(ProgramaEntidad programaEntidad) {
-        this.programaEntidad = programaEntidad;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    @Basic
+    @Column(name = "celular")
+    @NotNull
+    @Size(min = 10, max = 10)
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+
+    @Basic
+    @Column(name = "telefono")
+    @NotNull
+    @Size(min = 10, max = 10)
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    @Basic
+    @Column(name = "rfc")
+    @NotNull
+    @Size(min = 12, max = 13)
+    public String getRfc() {
+        return rfc;
+    }
+
+    public void setRfc(String rfc) {
+        this.rfc = rfc;
+    }
+
+    @Basic
+    @Column(name = "nacimiento")
+    @NotNull
+    @Temporal(value = TemporalType.DATE)
+    public Date getNacimiento() {
+        return nacimiento;
+    }
+
+    public void setNacimiento(Date nacimiento) {
+        this.nacimiento = nacimiento;
     }
 }

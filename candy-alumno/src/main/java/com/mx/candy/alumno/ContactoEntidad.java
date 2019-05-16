@@ -1,11 +1,11 @@
-package com.mx.candy.entidad;
+package com.mx.candy.alumno;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "contacto", schema = "finanzas")
+@Table(name = "contacto", schema = "alumno")
 @NamedQuery(name = "ContactoEntidad.busca", query = "SELECT c FROM ContactoEntidad c")
 public class ContactoEntidad {
 
