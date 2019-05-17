@@ -1,6 +1,7 @@
 package com.mx.candy.alumno.sesion;
 
 import com.mx.candy.alumno.entidad.AlumnoEntidad;
+import com.mx.candy.alumno.modelo.AlumnoBaseModelo;
 import com.mx.candy.alumno.modelo.AlumnoModelo;
 import com.mx.candy.nucleo.entidad.CatalogoEntidad;
 import com.mx.candy.nucleo.herramienta.LoggerProducer;
@@ -25,7 +26,7 @@ public class AlumnoSesionBeanTest {
     @Deployment
     public static WebArchive createDeployment() {
         return ShrinkWrap.create(WebArchive.class, "prueba.war")
-                .addClasses(CatalogoEntidad.class, LoggerProducer.class, AlumnoSesionBean.class, AlumnoModelo.class)
+                .addClasses(CatalogoEntidad.class, LoggerProducer.class, AlumnoSesionBean.class, AlumnoModelo.class, AlumnoBaseModelo.class)
                 .addPackage(AlumnoEntidad.class.getPackage())
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addAsResource("META-INF/persistence.xml");
@@ -54,6 +55,20 @@ public class AlumnoSesionBeanTest {
             Assert.assertNotNull(alumnoModelo.getObservaciones());
             Assert.assertNotNull(alumnoModelo.getRfc());
             Assert.assertNotNull(alumnoModelo.getTelefono());
+        });
+    }
+
+    @Test
+    public void buscaBase() {
+        List<AlumnoBaseModelo> alumnoBaseModeloLista = alumnoSesionBean.buscaEstatus();
+        Assert.assertNotNull(alumnoBaseModeloLista);
+        Assert.assertFalse(alumnoBaseModeloLista.isEmpty());
+        alumnoBaseModeloLista.forEach(alumnoBaseModelo -> {
+            Assert.assertNotNull(alumnoBaseModelo);
+            Assert.assertNotNull(alumnoBaseModelo.getMatricula());
+            Assert.assertNotNull(alumnoBaseModelo.getNombre());
+            Assert.assertNotNull(alumnoBaseModelo.getApellidoPaterno());
+            Assert.assertNotNull(alumnoBaseModelo.getApellidoMaterno());
         });
     }
 

@@ -2,13 +2,16 @@ package com.mx.candy.alumno.sesion;
 
 import com.mx.candy.alumno.entidad.AlumnoEntidad;
 import com.mx.candy.alumno.entidad.DatoEntidad;
+import com.mx.candy.alumno.modelo.AlumnoBaseModelo;
 import com.mx.candy.alumno.modelo.AlumnoModelo;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.CriteriaUpdate;
 import javax.persistence.criteria.Root;
 import javax.validation.Valid;
@@ -38,6 +41,24 @@ public class AlumnoSesionBean {
         return entityManager.createNamedQuery("AlumnoEntidad.busca", AlumnoEntidad.class)
                 .getResultList().stream().map(AlumnoModelo::new)
                 .collect(Collectors.toList());
+    }
+
+    /**
+     * Busca todos los alumnos con el estatus
+     * @param estatus clave del estatus a ignorar
+     * @return Colección de {@link AlumnoBaseModelo}
+     */
+    public List<AlumnoBaseModelo> busca(Short... estatus) {
+        logger.info("Entramos a la busqueda");
+        logger.fine(estatus.toString());
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<AlumnoEntidad> criteriaQuery = criteriaBuilder.createQuery(AlumnoEntidad.class);
+        Root<AlumnoEntidad> root = criteriaQuery.from(AlumnoEntidad.class);
+        criteriaQuery.select(criteriaBuilder.construct(AlumnoEntidad.class, root.get("matricula"),root.get("nombre"),root.get("apellidoPaterno"),root.get("apellidoMaterno")));
+        if (estatus.length != 0) {
+            criteriaQuery.where(root.get("estatusEntidad").in(estatus));
+        }
+        return entityManager.createQuery(criteriaQuery).getResultList().stream().map(AlumnoBaseModelo::new).collect(Collectors.toList());
     }
 
     /**

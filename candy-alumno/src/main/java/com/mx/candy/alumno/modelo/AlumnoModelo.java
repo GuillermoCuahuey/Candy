@@ -8,13 +8,9 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.Objects;
 
-public class AlumnoModelo implements Comparable<AlumnoModelo>{
+public class AlumnoModelo extends AlumnoBaseModelo {
 
-    private String matricula;
     private String curp;
-    private String nombre;
-    private String apellidoPaterno;
-    private String apellidoMaterno;
     private String estatus;
     private String direccion;
     private String celular;
@@ -29,15 +25,11 @@ public class AlumnoModelo implements Comparable<AlumnoModelo>{
     }
 
     public AlumnoModelo(String matricula) {
-        this.matricula = matricula;
+        super(matricula);
     }
 
     public AlumnoModelo(AlumnoEntidad alumnoEntidad) {
-        matricula = alumnoEntidad.getMatricula();
         curp = alumnoEntidad.getCurp();
-        nombre = alumnoEntidad.getNombre();
-        apellidoPaterno = alumnoEntidad.getApellidoPaterno();
-        apellidoMaterno = alumnoEntidad.getApellidoMaterno();
         estatus = alumnoEntidad.getEstatusEntidad().getDescripcion();
         direccion = alumnoEntidad.getDireccion();
         celular = alumnoEntidad.getCelular();
@@ -50,16 +42,6 @@ public class AlumnoModelo implements Comparable<AlumnoModelo>{
     }
 
     @NotNull
-    @Size(min = 12, max = 12)
-    public String getMatricula() {
-        return matricula;
-    }
-
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
-    }
-
-    @NotNull
     @Size(min = 18, max = 18)
     public String getCurp() {
         return curp;
@@ -67,36 +49,6 @@ public class AlumnoModelo implements Comparable<AlumnoModelo>{
 
     public void setCurp(String curp) {
         this.curp = curp;
-    }
-
-    @NotNull
-    @Size(min = 3, max = 100)
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    @NotNull
-    @Size(min = 3, max = 50)
-    public String getApellidoPaterno() {
-        return apellidoPaterno;
-    }
-
-    public void setApellidoPaterno(String apellidoPaterno) {
-        this.apellidoPaterno = apellidoPaterno;
-    }
-
-    @NotNull
-    @Size(min = 3, max = 50)
-    public String getApellidoMaterno() {
-        return apellidoMaterno;
-    }
-
-    public void setApellidoMaterno(String apellidoMaterno) {
-        this.apellidoMaterno = apellidoMaterno;
     }
 
     public String getEstatus() {
@@ -184,21 +136,4 @@ public class AlumnoModelo implements Comparable<AlumnoModelo>{
         this.observaciones = observaciones;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        AlumnoModelo that = (AlumnoModelo) o;
-        return matricula.equals(that.matricula);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(matricula);
-    }
-
-    @Override
-    public int compareTo(AlumnoModelo alumnoModelo) {
-        return matricula.compareTo(alumnoModelo.getMatricula());
-    }
 }

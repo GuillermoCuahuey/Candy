@@ -11,8 +11,12 @@ import java.util.Date;
         uniqueConstraints = @UniqueConstraint(columnNames = {"curp"}))
 @Access(AccessType.PROPERTY)
 @NamedQueries( value = {
-        @NamedQuery(name = "AlumnoEntidad.busca", query = "SELECT a FROM AlumnoEntidad a LEFT JOIN FETCH a.estatusEntidad e LEFT JOIN FETCH a.datoEntidad d"),
-        @NamedQuery(name = "AlumnoEntidad.elimina", query = "DELETE FROM AlumnoEntidad a WHERE a.matricula = :matricula")
+        @NamedQuery(
+                name = "AlumnoEntidad.busca",
+                query = "SELECT a FROM AlumnoEntidad a LEFT JOIN FETCH a.estatusEntidad e LEFT JOIN FETCH a.datoEntidad d"),
+        @NamedQuery(
+                name = "AlumnoEntidad.elimina",
+                query = "DELETE FROM AlumnoEntidad a WHERE a.matricula = :matricula")
 })
 public class AlumnoEntidad {
 
@@ -29,6 +33,16 @@ public class AlumnoEntidad {
     private String rfc;
     private Date nacimiento;
     private DatoEntidad datoEntidad;
+
+    public AlumnoEntidad() {
+    }
+
+    public AlumnoEntidad(String matricula, String nombre, String apellidoPaterno, String apellidoMaterno) {
+        this.matricula = matricula;
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+    }
 
     @Id
     @Column(name = "matricula")
