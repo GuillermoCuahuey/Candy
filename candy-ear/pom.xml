@@ -8,7 +8,7 @@
         <version>0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <name>Candy EAR</name>
+    <name>EAR</name>
     <packaging>ear</packaging>
     <description></description>
     <artifactId>candy-ear</artifactId>

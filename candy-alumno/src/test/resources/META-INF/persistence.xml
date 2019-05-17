@@ -5,7 +5,7 @@
     <persistence-unit name="test">
         <jta-data-source>java:/jboss/datasources/CandyDS</jta-data-source>
         <properties>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL94Dialect"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgresPlusDialect"/>
             <property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.connection.autocommit" value="false"/>

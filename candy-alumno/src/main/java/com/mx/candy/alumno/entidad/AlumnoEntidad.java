@@ -1,15 +1,18 @@
-package com.mx.candy.alumno;
+package com.mx.candy.alumno.entidad;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
 @Table(name = "alumno", schema = "alumno",
         uniqueConstraints = @UniqueConstraint(columnNames = {"curp"}))
+@Access(AccessType.PROPERTY)
 @NamedQueries( value = {
-        @NamedQuery(name = "AlumnoEntidad.busca", query = "SELECT a FROM AlumnoEntidad a LEFT JOIN FETCH a.estatusEntidad e")
+        @NamedQuery(name = "AlumnoEntidad.busca", query = "SELECT a FROM AlumnoEntidad a LEFT JOIN FETCH a.estatusEntidad e LEFT JOIN FETCH a.datoEntidad d"),
+        @NamedQuery(name = "AlumnoEntidad.elimina", query = "DELETE FROM AlumnoEntidad a WHERE a.matricula = :matricula")
 })
 public class AlumnoEntidad {
 
@@ -22,8 +25,10 @@ public class AlumnoEntidad {
     private String direccion;
     private String celular;
     private String telefono;
+    private String correoElectronico;
     private String rfc;
     private Date nacimiento;
+    private DatoEntidad datoEntidad;
 
     @Id
     @Column(name = "matricula")
@@ -84,7 +89,7 @@ public class AlumnoEntidad {
         this.apellidoMaterno = apellidoMaterno;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REMOVE})
     @JoinColumn(insertable = false, name = "id_estatus")
     public EstatusEntidad getEstatusEntidad() {
         return estatusEntidad;
@@ -131,6 +136,18 @@ public class AlumnoEntidad {
     }
 
     @Basic
+    @Column(name = "correo_electronico")
+    @NotNull
+    @Size(min = 3, max = 150)
+    public String getCorreoElectronico() {
+        return correoElectronico;
+    }
+
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
+    }
+
+    @Basic
     @Column(name = "rfc")
     @NotNull
     @Size(min = 12, max = 13)
@@ -146,11 +163,21 @@ public class AlumnoEntidad {
     @Column(name = "nacimiento")
     @NotNull
     @Temporal(value = TemporalType.DATE)
+    @Past
     public Date getNacimiento() {
         return nacimiento;
     }
 
     public void setNacimiento(Date nacimiento) {
         this.nacimiento = nacimiento;
+    }
+
+    @OneToOne(mappedBy = "alumnoEntidad", cascade = CascadeType.ALL)
+    public DatoEntidad getDatoEntidad() {
+        return datoEntidad;
+    }
+
+    public void setDatoEntidad(DatoEntidad datoEntidad) {
+        this.datoEntidad = datoEntidad;
     }
 }

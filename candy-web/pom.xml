@@ -7,7 +7,7 @@
         <groupId>com.mx.candy</groupId>
         <version>0.1</version>
     </parent>
-    <name>Candy Web</name>
+    <name>Web</name>
     <packaging>war</packaging>
     <modelVersion>4.0.0</modelVersion>
 

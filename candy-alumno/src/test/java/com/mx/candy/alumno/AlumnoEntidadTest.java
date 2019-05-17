@@ -1,11 +1,12 @@
 package com.mx.candy.alumno;
 
+import com.mx.candy.alumno.entidad.AlumnoEntidad;
+import com.mx.candy.alumno.entidad.EstatusEntidad;
 import com.mx.candy.nucleo.entidad.CatalogoEntidad;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
@@ -16,8 +17,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 @RunWith(Arquillian.class)
 public class AlumnoEntidadTest {
@@ -52,6 +51,8 @@ public class AlumnoEntidadTest {
             Assert.assertNotNull(alumnoEntidad.getNombre());
             Assert.assertNotNull(alumnoEntidad.getRfc());
             Assert.assertNotNull(alumnoEntidad.getTelefono());
+            Assert.assertNotNull(alumnoEntidad.getDatoEntidad().getAlergias());
+            Assert.assertNotNull(alumnoEntidad.getDatoEntidad().getObservaciones());
         });
     }
 

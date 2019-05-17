@@ -1,5 +1,6 @@
 package com.mx.candy.alumno;
 
+import com.mx.candy.alumno.entidad.EstatusEntidad;
 import com.mx.candy.nucleo.entidad.CatalogoEntidad;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;

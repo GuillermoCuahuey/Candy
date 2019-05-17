@@ -1,4 +1,4 @@
-package com.mx.candy.alumno;
+package com.mx.candy.alumno.entidad;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
