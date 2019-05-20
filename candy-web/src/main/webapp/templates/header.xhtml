@@ -16,6 +16,11 @@
     <link rel="icon" type="image/png" sizes="32x32" href="../resources/img/fav/favicon-32x32.png"/>
     <link rel="icon" type="image/png" sizes="16x16" href="../resources/img/fav/favicon-16x16.png"/>
     <link rel="mask-icon" href="../resources/img/fav/safari-pinned-tab.svg" color="#5bbad5"/>
+    <link rel="stylesheet" type="text/css" href="../resources/css/materialdesignicons.css"/>
+    <link rel="stylesheet" type="text/css" href="../resources/css/uikit.css"/>
+    <link rel="stylesheet" type="text/css" href="../resources/css/themes/themes_combined.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../resources/css/fonts/mdi_fonts.css"/>
+    <link rel="stylesheet" type="text/css" href="../resources/css/main.min.css"/>
 
     <link rel="manifest" href="../resources/manifest.json"/>
 
@@ -38,24 +43,24 @@
         var html = document.getElementsByTagName('html')[0];
         // ----------- CSS
         // md icons
-        loadjs('../resources/css/materialdesignicons.min.css', {
-            preload: true
-        });
-        // UIkit
-        loadjs('../resources/css/uikit.css', {
-            preload: true
-        });
-        // themes
-        loadjs('../resources/css/themes/themes_combined.min.css', {
-            preload: true
-        });
-
-        loadjs(['../resources/css/fonts/mdi_fonts.css', '../resources/css/fonts/roboto_base64.css', '../resources/css/fonts/sourceCodePro_base64.css'], {
-            preload: true
-        });
-        // main stylesheet
-        loadjs('../resources/css/main.min.css', function() {});
-        // vendor
+        // loadjs('../resources/css/materialdesignicons.min.css', {
+        //     preload: true
+        // });
+        // // UIkit
+        // loadjs('../resources/css/uikit.css', {
+        //     preload: true
+        // });
+        // // themes
+        // loadjs('../resources/css/themes/themes_combined.min.css', {
+        //     preload: true
+        // });
+        //
+        // loadjs(['../resources/css/fonts/mdi_fonts.css', '../resources/css/fonts/roboto_base64.css', '../resources/css/fonts/sourceCodePro_base64.css'], {
+        //     preload: true
+        // });
+        // // main stylesheet
+        // loadjs('../resources/css/main.min.css', function() {});
+        // // vendor
         loadjs('../resources/js/vendor.min.js', function () {
             // scutum common functions/helpers
             loadjs('../resources/js/scutum_common.min.js', function() {
