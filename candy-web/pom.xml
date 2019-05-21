@@ -12,7 +12,16 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>candy-web</artifactId>
+
     <dependencies>
+
+        <dependency>
+            <groupId>com.mx.candy</groupId>
+            <artifactId>candy-alumno</artifactId>
+            <type>ejb</type>
+            <scope>provided</scope>
+        </dependency>
+
         <dependency>
             <groupId>javax.enterprise</groupId>
             <artifactId>cdi-api</artifactId>

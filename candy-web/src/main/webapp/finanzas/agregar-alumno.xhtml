@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Antonio Francisco Alonso Valerdi
+  Date: 20/05/2019
+  Time: 11:45 AM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/templates/template.xhtml">
+    <ui:define name="contenido">
+        <h:form id="formulario-alumno">
+            <div class="" uk-grid="">
+                <div class="uk-card uk-width-1-2">
+                    <div class="uk-card-body">
+                        <div>
+                            <h5 class="uk-heading-line"><span>Nuevo Alumno</span></h5>
+                            <div class="uk-grid uk-margin-top" >
+                                <div class="uk-width-1-3">
+                                    <h:outputLabel value="Matrícula" for="entrada-matricula"/>
+                                    <h:inputText id="entrada-matricula" styleClass="uk-input" pt:data-sc-input="outline" value="#{alumnoControlador.alumnoModelo.matricula}"/>
+                                </div>
+                                <div class="uk-width-1-3">
+                                    <h:outputLabel value="CURP" for="entrada-curp"/>
+                                    <h:inputText id="entrada-curp" styleClass="uk-input" pt:data-sc-input="outline" value="#{alumnoControlador.alumnoModelo.curp}"/>
+                                </div>
+                                <div class="uk-width-1-3">
+                                    <h:outputLabel value="RFC" for="entrada-rfc"/>
+                                    <h:inputText id="entrada-rfc" styleClass="uk-input" pt:data-sc-input="outline" value="#{alumnoControlador.alumnoModelo.rfc}"/>
+                                </div>
+                            </div>
+                            <div class="uk-margin">
+                                <h:outputLabel for="entrada-nombre" value="Nombre(s)"/>
+                                <h:inputText id="entrada-nombre" styleClass="uk-input" pt:data-sc-input="outline" required="true" value="#{alumnoControlador.alumnoModelo.nombre}"/>
+                            </div>
+                            <div class="uk-grid" >
+                                <div class="uk-width-1-2">
+                                    <h:outputLabel value="Apellido Paterno" for="entrada-apellido-paterno"/>
+                                    <h:inputText id="entrada-apellido-paterno" styleClass="uk-input" pt:data-sc-input="outline" value="#{alumnoControlador.alumnoModelo.apellidoPaterno}"/>
+                                </div>
+                                <div class="uk-width-1-2">
+                                    <h:outputLabel value="Apellido Materno" for="entrada-apellido-materno"/>
+                                    <h:inputText id="entrada-apellido-materno" styleClass="uk-input" pt:data-sc-input="outline" value="#{alumnoControlador.alumnoModelo.apellidoMaterno}"/>
+                                </div>
+                            </div>
+                            <div class="uk-margin-top">
+                                <h:outputLabel value="Dirección" for="entrada-direccion"/>
+                                <h:inputText id="entrada-direccion" styleClass="uk-input" pt:data-sc-input="outline" value="#{alumnoControlador.alumnoModelo.direccion}"/>
+                            </div>
+                            <div class="uk-grid uk-margin-top">
+                                <div class="uk-width-1-3">
+                                    <h:outputLabel value="Celular" for="entrada-celular"/>
+                                    <h:inputText id="entrada-celular" styleClass="uk-input" pt:data-sc-input="outline" value="#{alumnoControlador.alumnoModelo.celular}"/>
+                                </div>
+                                <div class="uk-width-1-3">
+                                    <h:outputLabel value="Teléfono" for="entrada-telefono"/>
+                                    <h:inputText id="entrada-telefono" styleClass="uk-input" pt:data-sc-input="outline" value="#{alumnoControlador.alumnoModelo.telefono}"/>
+                                </div>
+                                <div class="uk-width-1-3">
+                                    <h:outputLabel value="Fecha de Nacimiento" for="entrada-fecha-nacimiento"/>
+                                    <h:inputText id="entrada-fecha-nacimiento" styleClass="uk-input" pt:data-sc-input="outline" value="#{alumnoControlador.alumnoModelo.nacimiento}">
+                                        <f:convertDateTime pattern="yyyy-MM-dd"/>
+                                    </h:inputText>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-card uk-width-1-2 uk-margin-top">
+                    <div class="uk-card-body">
+                        <h5 class="uk-heading-line"><span>Datos extras</span></h5>
+                        <div class="uk-margin-top">
+                            <h:outputLabel value="Alergias" for="entrada-alergias"/>
+                            <h:inputText id="entrada-alergias" styleClass="uk-input" pt:data-sc-input="outline"/>
+                        </div>
+                        <div class="uk-margin-top">
+                            <h:outputLabel value="Observaciones" for="area-text-observaciones"/>
+                            <h:inputTextarea id="area-text-observaciones" styleClass="uk-textarea" rows="5"/>
+                        </div>
+                        <div class="uk-margin-top">Agregar otro alumno
+                            <h:selectBooleanCheckbox value="#{alumnoControlador.agregarAlumno}" styleClass="uk-checkbox"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ui:fragment rendered="#{facesContext.validationFailed}" id="errores">
+                <script type="text/javascript">
+                UIkit.notification('&lt;span class="md-color-red-400 mdi mdi-alert-outline uk-margin-small-right"/&gt; There are 3 unpaid invoices', {
+                    pos: 'bottom-center',
+                    timeout: 10000
+                });
+                </script>
+            </ui:fragment>
+            <div class="uk-margin uk-flex uk-flex-self-end">
+                <h:commandButton styleClass="sc-button sc-button-primary" value="Agregar">
+                    <f:ajax execute="@form" render="formulario-alumno:errores" listener="#{alumnoControlador.inserta}"/>
+                </h:commandButton>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
+</html>

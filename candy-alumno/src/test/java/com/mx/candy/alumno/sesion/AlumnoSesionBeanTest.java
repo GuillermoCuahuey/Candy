@@ -36,31 +36,8 @@ public class AlumnoSesionBeanTest {
     private AlumnoSesionBean alumnoSesionBean;
 
     @Test
-    public void busca() {
-        List<AlumnoModelo> alumnoModeloLista = alumnoSesionBean.busca();
-        Assert.assertNotNull(alumnoModeloLista);
-        Assert.assertFalse(alumnoModeloLista.isEmpty());
-        alumnoModeloLista.forEach(alumnoModelo -> {
-            Assert.assertNotNull(alumnoModelo);
-            Assert.assertNotNull(alumnoModelo.getAlergias());
-            Assert.assertNotNull(alumnoModelo.getApellidoMaterno());
-            Assert.assertNotNull(alumnoModelo.getApellidoPaterno());
-            Assert.assertNotNull(alumnoModelo.getCelular());
-            Assert.assertNotNull(alumnoModelo.getCurp());
-            Assert.assertNotNull(alumnoModelo.getDireccion());
-            Assert.assertNotNull(alumnoModelo.getEstatus());
-            Assert.assertNotNull(alumnoModelo.getMatricula());
-            Assert.assertNotNull(alumnoModelo.getNacimiento());
-            Assert.assertNotNull(alumnoModelo.getNombre());
-            Assert.assertNotNull(alumnoModelo.getObservaciones());
-            Assert.assertNotNull(alumnoModelo.getRfc());
-            Assert.assertNotNull(alumnoModelo.getTelefono());
-        });
-    }
-
-    @Test
     public void buscaBase() {
-        List<AlumnoBaseModelo> alumnoBaseModeloLista = alumnoSesionBean.buscaEstatus();
+        List<AlumnoBaseModelo> alumnoBaseModeloLista = alumnoSesionBean.busca((short)1);
         Assert.assertNotNull(alumnoBaseModeloLista);
         Assert.assertFalse(alumnoBaseModeloLista.isEmpty());
         alumnoBaseModeloLista.forEach(alumnoBaseModelo -> {

@@ -17,6 +17,7 @@ import javax.persistence.criteria.Root;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -34,16 +35,6 @@ public class AlumnoSesionBean {
     private Logger logger;
 
     /**
-     * Busca todos los alumnos registrados
-     * @return Colección de {@link AlumnoModelo}
-     */
-    public List<AlumnoModelo> busca() {
-        return entityManager.createNamedQuery("AlumnoEntidad.busca", AlumnoEntidad.class)
-                .getResultList().stream().map(AlumnoModelo::new)
-                .collect(Collectors.toList());
-    }
-
-    /**
      * Busca todos los alumnos con el estatus
      * @param estatus clave del estatus a ignorar
      * @return Colección de {@link AlumnoBaseModelo}
@@ -56,7 +47,7 @@ public class AlumnoSesionBean {
         Root<AlumnoEntidad> root = criteriaQuery.from(AlumnoEntidad.class);
         criteriaQuery.select(criteriaBuilder.construct(AlumnoEntidad.class, root.get("matricula"),root.get("nombre"),root.get("apellidoPaterno"),root.get("apellidoMaterno")));
         if (estatus.length != 0) {
-            criteriaQuery.where(root.get("estatusEntidad").in(estatus));
+            criteriaQuery.where(root.get("estatusEntidad").in(Arrays.asList(estatus).toArray()));
         }
         return entityManager.createQuery(criteriaQuery).getResultList().stream().map(AlumnoBaseModelo::new).collect(Collectors.toList());
     }

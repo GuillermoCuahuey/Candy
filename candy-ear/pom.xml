@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
     <name>EAR</name>
     <packaging>ear</packaging>
-    <description></description>
+    <description>Artefacto para el empaquetado de los componentes</description>
     <artifactId>candy-ear</artifactId>
 
     <dependencies>
@@ -26,8 +26,14 @@
         </dependency>
         <dependency>
             <groupId>com.mx.candy</groupId>
+            <artifactId>candy-alumno</artifactId>
+            <type>ejb</type>
+        </dependency>
+        <dependency>
+            <groupId>com.mx.candy</groupId>
             <artifactId>candy-web</artifactId>
             <type>war</type>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
