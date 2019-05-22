@@ -1,7 +1,9 @@
 package com.mx.candy.alumno.sesion;
 
+import com.mx.candy.alumno.entidad.AlumnoEntidad;
 import com.mx.candy.alumno.entidad.CursoEntidad;
 import com.mx.candy.alumno.entidad.ProgramaEntidad;
+import com.mx.candy.alumno.modelo.AlumnoModelo;
 import com.mx.candy.alumno.modelo.CursoModelo;
 import com.mx.candy.alumno.validacion.NuevoCursoValidacion;
 import com.mx.candy.nucleo.herramienta.ValidadorSessionBean;
@@ -35,6 +37,11 @@ public class CursoSesionBean {
     public List<CursoModelo> busca() {
         return entityManager.createNamedQuery("CursoEntidad.busca", CursoEntidad.class).getResultList()
                 .stream().map(CursoModelo::new).collect(Collectors.toList());
+    }
+
+    public List<AlumnoModelo> buscaAlumnos(@NotNull Integer id) {
+        return entityManager.createNamedQuery("CursoEntidad.buscaAlumnos", AlumnoEntidad.class)
+                .getResultList().stream().map(AlumnoModelo::new).collect(Collectors.toList());
     }
 
     public void inserta(@NotNull CursoModelo cursoModelo) {

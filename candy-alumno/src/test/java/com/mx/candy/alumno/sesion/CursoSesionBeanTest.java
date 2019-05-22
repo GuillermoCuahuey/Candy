@@ -58,6 +58,11 @@ public class CursoSesionBeanTest {
     }
 
     @Test
+    public void buscaAlumnos() {
+
+    }
+
+    @Test
     public void inserta() {
         CursoModelo cursoModelo = new CursoModelo();
         cursoModelo.setProgramaModelo(new ProgramaModelo((short)1));
@@ -72,6 +77,18 @@ public class CursoSesionBeanTest {
 
     @Test
     public void elimina() {
-        cursoSesionBean.elimina(-44);
+        cursoSesionBean.elimina(0);
+    }
+
+    @Test
+    public void actualiza() {
+        CursoModelo cursoModelo = new CursoModelo(1);
+        cursoModelo.setProgramaModelo(new ProgramaModelo((short)1));
+        cursoModelo.setBeca((short)15);
+        cursoModelo.setFin(new Date());
+        cursoModelo.setInicio(new Date());
+        cursoModelo.setGrado((short)2);
+        cursoModelo.setGrupo('C');
+        int modificados = cursoSesionBean.actualiza(cursoModelo);
     }
 }

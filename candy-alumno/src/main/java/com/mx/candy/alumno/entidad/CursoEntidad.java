@@ -4,11 +4,15 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "curso", schema = "alumno")
 @SequenceGenerator(name = "secuencia", schema = "alumno", sequenceName = "curso_sec")
-@NamedQuery(name = "CursoEntidad.busca", query = "SELECT c FROM CursoEntidad c LEFT JOIN FETCH c.programaEntidad")
+@NamedQueries(value = {
+        @NamedQuery(name = "CursoEntidad.busca", query = "SELECT c FROM CursoEntidad c LEFT JOIN FETCH c.programaEntidad"),
+        @NamedQuery(name = "CursoEntidad.buscaAlumnos", query = "SELECT al FROM CursoEntidad c LEFT JOIN FETCH c.alumnoEntidadLista al WHERE c.id = :id")
+})
 public class CursoEntidad {
 
     private Integer id;
@@ -18,6 +22,7 @@ public class CursoEntidad {
     private Date inicio;
     private Date fin;
     private Short beca;
+    private List<CursoEntidad> cursoEntidadLista;
 
     public CursoEntidad() {
     }
@@ -105,4 +110,12 @@ public class CursoEntidad {
         this.beca = beca;
     }
 
+
+    public List<CursoEntidad> getCursoEntidadLista() {
+        return cursoEntidadLista;
+    }
+
+    public void setCursoEntidadLista(List<CursoEntidad> cursoEntidadLista) {
+        this.cursoEntidadLista = cursoEntidadLista;
+    }
 }
