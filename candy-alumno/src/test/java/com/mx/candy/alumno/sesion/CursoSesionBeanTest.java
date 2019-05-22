@@ -69,4 +69,9 @@ public class CursoSesionBeanTest {
         cursoSesionBean.inserta(cursoModelo);
         assertFalse(cursoModelo.getId() == 0);
     }
+
+    @Test
+    public void elimina() {
+        cursoSesionBean.elimina(-44);
+    }
 }
