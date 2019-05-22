@@ -1,36 +1,30 @@
-package com.mx.candy.nucleo.entidad;
+package com.mx.candy.alumno.entidad;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import com.mx.candy.nucleo.entidad.CatalogoEntidad;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@MappedSuperclass
-public class CatalogoEntidad {
+@Entity
+@Table(name = "programa", schema = "alumno")
+@NamedQuery(name = "ProgramaEntidad.busca", query = "SELECT p FROM ProgramaEntidad p")
+@SequenceGenerator(name = "secuencia", schema = "alumno", sequenceName = "programa_seq")
+public class ProgramaEntidad {
 
     private Short clave;
     private String descripcion;
 
-    public CatalogoEntidad() {
+    public ProgramaEntidad() {
     }
 
-    public CatalogoEntidad(Short clave) {
+    public ProgramaEntidad(Short clave) {
         this.clave = clave;
-    }
-
-    public CatalogoEntidad(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public CatalogoEntidad(Short clave, String descripcion) {
-        this.clave = clave;
-        this.descripcion = descripcion;
     }
 
     @Id
     @Column(name = "clave")
+    @GeneratedValue(generator = "secuencia")
     public Short getClave() {
         return clave;
     }
@@ -50,4 +44,5 @@ public class CatalogoEntidad {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
 }

@@ -9,8 +9,10 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.*;
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -84,4 +86,22 @@ public class CatalogoSesionBean<M extends CatalogoModelo, E extends CatalogoEnti
         return modeloLista;
     }
 
+    /**
+     * Actualiza la valor de un elemento dentro de los catálogos
+     * @param catalogoModelo Datos a ser actualizados
+     * @return Número de elementos modificados.
+     */
+    protected int actualiza(@NotNull @Valid M catalogoModelo) {
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaUpdate<E> criteriaUpdate = criteriaBuilder.createCriteriaUpdate(catalogoEntidad);
+        Root<E> root = criteriaUpdate.from(catalogoEntidad);
+        Predicate predicate = criteriaBuilder.equal(root.get("clave"), catalogoModelo.getClave());
+        criteriaUpdate.set(root.get("descripcion"), catalogoModelo.getDescripcion());
+        criteriaUpdate.where(predicate);
+        return entityManager.createQuery(criteriaUpdate).executeUpdate();
+    }
+
+    protected EntityManager getEntityManager() {
+        return entityManager;
+    }
 }
