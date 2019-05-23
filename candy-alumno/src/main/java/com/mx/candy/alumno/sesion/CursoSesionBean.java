@@ -1,9 +1,11 @@
 package com.mx.candy.alumno.sesion;
 
 import com.mx.candy.alumno.entidad.AlumnoEntidad;
+import com.mx.candy.alumno.entidad.CursoCobroEntidad;
 import com.mx.candy.alumno.entidad.CursoEntidad;
 import com.mx.candy.alumno.entidad.ProgramaEntidad;
 import com.mx.candy.alumno.modelo.AlumnoModelo;
+import com.mx.candy.alumno.modelo.CobroModelo;
 import com.mx.candy.alumno.modelo.CursoModelo;
 import com.mx.candy.alumno.validacion.NuevoCursoValidacion;
 import com.mx.candy.nucleo.herramienta.ValidadorSessionBean;
@@ -39,9 +41,12 @@ public class CursoSesionBean {
                 .stream().map(CursoModelo::new).collect(Collectors.toList());
     }
 
-    public List<AlumnoModelo> buscaAlumnos(@NotNull Integer id) {
-        return entityManager.createNamedQuery("CursoEntidad.buscaAlumnos", AlumnoEntidad.class)
-                .getResultList().stream().map(AlumnoModelo::new).collect(Collectors.toList());
+    public List<CobroModelo> buscaCobro(@NotNull Integer id) {
+        return entityManager.createNamedQuery("CursoEntidad.buscaCobros", CursoCobroEntidad.class)
+                .setParameter("id", id)
+                .getResultList().stream().map(cursoCobroEntidad -> {
+                    return new CobroModelo(cursoCobroEntidad.getCobroEntidad());
+                }).collect(Collectors.toList());
     }
 
     public void inserta(@NotNull CursoModelo cursoModelo) {

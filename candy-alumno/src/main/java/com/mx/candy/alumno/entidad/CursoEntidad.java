@@ -10,8 +10,12 @@ import java.util.List;
 @Table(name = "curso", schema = "alumno")
 @SequenceGenerator(name = "secuencia", schema = "alumno", sequenceName = "curso_sec")
 @NamedQueries(value = {
-        @NamedQuery(name = "CursoEntidad.busca", query = "SELECT c FROM CursoEntidad c LEFT JOIN FETCH c.programaEntidad"),
-        @NamedQuery(name = "CursoEntidad.buscaAlumnos", query = "SELECT al FROM CursoEntidad c LEFT JOIN FETCH c.alumnoEntidadLista al WHERE c.id = :id")
+        @NamedQuery(
+                name = "CursoEntidad.busca",
+                query = "SELECT c FROM CursoEntidad c LEFT JOIN FETCH c.programaEntidad"),
+        @NamedQuery(
+                name = "CursoEntidad.buscaCobros",
+                query = "SELECT c.cursoCobroEntidadLista FROM CursoEntidad c LEFT JOIN FETCH c.cursoCobroEntidadLista ccel WHERE c.id = :id")
 })
 public class CursoEntidad {
 
@@ -22,7 +26,7 @@ public class CursoEntidad {
     private Date inicio;
     private Date fin;
     private Short beca;
-    private List<CursoEntidad> cursoEntidadLista;
+    private List<CursoCobroEntidad> cursoCobroEntidadLista;
 
     public CursoEntidad() {
     }
@@ -110,12 +114,16 @@ public class CursoEntidad {
         this.beca = beca;
     }
 
-
-    public List<CursoEntidad> getCursoEntidadLista() {
-        return cursoEntidadLista;
+    @OneToMany(
+            mappedBy = "cursoEntidad",
+            cascade = {CascadeType.PERSIST}
+    )
+    public List<CursoCobroEntidad> getCursoCobroEntidadLista() {
+        return cursoCobroEntidadLista;
     }
 
-    public void setCursoEntidadLista(List<CursoEntidad> cursoEntidadLista) {
-        this.cursoEntidadLista = cursoEntidadLista;
+    public void setCursoCobroEntidadLista(List<CursoCobroEntidad> cursoCobroEntidadLista) {
+        this.cursoCobroEntidadLista = cursoCobroEntidadLista;
     }
+
 }

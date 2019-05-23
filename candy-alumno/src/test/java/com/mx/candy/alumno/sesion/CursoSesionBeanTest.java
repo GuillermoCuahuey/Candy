@@ -1,7 +1,7 @@
 package com.mx.candy.alumno.sesion;
 
-import com.mx.candy.alumno.entidad.CursoEntidad;
-import com.mx.candy.alumno.entidad.ProgramaEntidad;
+import com.mx.candy.alumno.entidad.*;
+import com.mx.candy.alumno.modelo.CobroModelo;
 import com.mx.candy.alumno.modelo.CursoModelo;
 import com.mx.candy.alumno.modelo.ProgramaModelo;
 import com.mx.candy.alumno.validacion.NuevoCursoValidacion;
@@ -32,7 +32,8 @@ public class CursoSesionBeanTest {
         return ShrinkWrap.create(WebArchive.class, "prueba.war")
                 .addClasses(CursoSesionBean.class, CursoEntidad.class, CursoModelo.class, LoggerProducer.class,
                         ProgramaEntidad.class, CatalogoEntidad.class, ProgramaModelo.class, CatalogoModelo.class,
-                        ValidadorSessionBean.class, NuevoCursoValidacion.class)
+                        ValidadorSessionBean.class, NuevoCursoValidacion.class, CursoCobroEntidad.class,
+                        CursoCobroEntidadPK.class, CobroModelo.class, CobroEntidad.class)
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml").addAsResource("META-INF/persistence.xml");
     }
 
@@ -58,8 +59,15 @@ public class CursoSesionBeanTest {
     }
 
     @Test
-    public void buscaAlumnos() {
-
+    public void buscaCostos() {
+        List<CobroModelo> cobroModeloLista = cursoSesionBean.buscaCobro(1);
+        assertNotNull(cobroModeloLista);
+        assertFalse(cobroModeloLista.isEmpty());
+        cobroModeloLista.forEach(cobroModelo -> {
+            assertNotNull(cobroModelo);
+            assertNotNull(cobroModelo.getMonto());
+            assertNotNull(cobroModelo.getDescripcion());
+        });
     }
 
     @Test
