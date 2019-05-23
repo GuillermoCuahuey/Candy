@@ -23,10 +23,10 @@ import java.util.logging.Logger;
 public class CatalogoSesionBean<M extends CatalogoModelo, E extends CatalogoEntidad> {
 
     @PersistenceContext
-    private EntityManager entityManager;
+    protected EntityManager entityManager;
 
     @Inject
-    private Logger logger;
+    protected Logger logger;
 
     private Class<M> catalogoModelo;
     private Class<E> catalogoEntidad;
@@ -99,9 +99,5 @@ public class CatalogoSesionBean<M extends CatalogoModelo, E extends CatalogoEnti
         criteriaUpdate.set(root.get("descripcion"), catalogoModelo.getDescripcion());
         criteriaUpdate.where(predicate);
         return entityManager.createQuery(criteriaUpdate).executeUpdate();
-    }
-
-    protected EntityManager getEntityManager() {
-        return entityManager;
     }
 }

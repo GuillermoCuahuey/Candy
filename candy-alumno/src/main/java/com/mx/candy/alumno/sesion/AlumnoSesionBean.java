@@ -24,6 +24,8 @@ import java.util.stream.Collectors;
 
 /**
  * Elemento para la administración de un alumno
+ * @author Antonio Francisco Alonso Valerdi
+ * @Since 0.1
  */
 @Stateless
 public class AlumnoSesionBean {
@@ -58,6 +60,7 @@ public class AlumnoSesionBean {
      * @return Objeto del tipo {@link AlumnoModelo} con los datos.
      */
     public AlumnoModelo busca(@NotNull @Size(min = 12, max = 12) String matricula) {
+        logger.fine(matricula);
         return new AlumnoModelo(entityManager.find(AlumnoEntidad.class, matricula));
     }
 
@@ -99,6 +102,11 @@ public class AlumnoSesionBean {
         return entityManager.createNamedQuery("AlumnoEntidad.elimina").setParameter("matricula", matricula).executeUpdate();
     }
 
+    /**
+     * Actualiza los datos de una alumno
+     * @param alumnoModelo Datos de Alumno a ser actualizados
+     * @return Número de elementos modificados
+     */
     public int actualiza(@NotNull @Valid AlumnoModelo alumnoModelo) {
         int modificados = 0;
         logger.fine(alumnoModelo.toString());

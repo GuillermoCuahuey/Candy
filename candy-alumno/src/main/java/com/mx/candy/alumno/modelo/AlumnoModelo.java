@@ -7,6 +7,7 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 public class AlumnoModelo extends AlumnoBaseModelo {
 
@@ -136,4 +137,19 @@ public class AlumnoModelo extends AlumnoBaseModelo {
         this.observaciones = observaciones;
     }
 
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", AlumnoModelo.class.getSimpleName() + "[", "]")
+                .add("curp='" + curp + "'")
+                .add("estatus='" + estatus + "'")
+                .add("direccion='" + direccion + "'")
+                .add("celular='" + celular + "'")
+                .add("telefono='" + telefono + "'")
+                .add("correoElectronico='" + correoElectronico + "'")
+                .add("rfc='" + rfc + "'")
+                .add("nacimiento=" + nacimiento)
+                .add("alergias='" + alergias + "'")
+                .add("observaciones='" + observaciones + "'")
+                .toString();
+    }
 }

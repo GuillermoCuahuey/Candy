@@ -5,8 +5,11 @@ import com.mx.candy.alumno.validacion.NuevoCursoValidacion;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class CursoModelo {
 
@@ -17,6 +20,7 @@ public class CursoModelo {
     private Date inicio;
     private Date fin;
     private Short beca;
+    private List<CobroModelo> cobroModeloLista;
 
     public CursoModelo() {
     }
@@ -33,6 +37,9 @@ public class CursoModelo {
         inicio = cursoEntidad.getInicio();
         fin = cursoEntidad.getFin();
         beca = cursoEntidad.getBeca();
+        if (cursoEntidad.getCursoCobroEntidadLista() != null && !cursoEntidad.getCursoCobroEntidadLista().isEmpty()) {
+            cobroModeloLista = cursoEntidad.getCursoCobroEntidadLista().stream().map(CobroModelo::new).collect(Collectors.toList());
+        }
     }
 
     @NotNull
@@ -98,6 +105,14 @@ public class CursoModelo {
 
     public void setBeca(Short beca) {
         this.beca = beca;
+    }
+
+    public List<CobroModelo> getCobroModeloLista() {
+        return cobroModeloLista;
+    }
+
+    public void setCobroModeloLista(List<CobroModelo> cobroModeloLista) {
+        this.cobroModeloLista = cobroModeloLista;
     }
 
     @Override

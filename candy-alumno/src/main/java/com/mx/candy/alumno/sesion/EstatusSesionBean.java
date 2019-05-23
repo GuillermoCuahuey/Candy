@@ -6,6 +6,9 @@ import com.mx.candy.nucleo.sesion.CatalogoSesionBean;
 
 import javax.ejb.Stateless;
 
+/**
+ * Estatus de un alumno
+ */
 @Stateless
 public class EstatusSesionBean extends CatalogoSesionBean<EstatusModelo, EstatusEntidad> {
 

@@ -15,7 +15,8 @@ import java.util.List;
                 query = "SELECT c FROM CursoEntidad c LEFT JOIN FETCH c.programaEntidad"),
         @NamedQuery(
                 name = "CursoEntidad.buscaCobros",
-                query = "SELECT c.cursoCobroEntidadLista FROM CursoEntidad c LEFT JOIN FETCH c.cursoCobroEntidadLista ccel WHERE c.id = :id")
+                query = "SELECT c FROM CursoEntidad c LEFT JOIN FETCH c.cursoCobroEntidadLista ccel " +
+                        "LEFT JOIN FETCH ccel.cobroEntidad co WHERE c.id = :id")
 })
 public class CursoEntidad {
 
@@ -45,7 +46,7 @@ public class CursoEntidad {
         this.id = id;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_programa")
     public ProgramaEntidad getProgramaEntidad() {
         return programaEntidad;
@@ -116,7 +117,7 @@ public class CursoEntidad {
 
     @OneToMany(
             mappedBy = "cursoEntidad",
-            cascade = {CascadeType.PERSIST}
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE}
     )
     public List<CursoCobroEntidad> getCursoCobroEntidadLista() {
         return cursoCobroEntidadLista;

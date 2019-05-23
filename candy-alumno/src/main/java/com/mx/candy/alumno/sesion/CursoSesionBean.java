@@ -1,10 +1,6 @@
 package com.mx.candy.alumno.sesion;
 
-import com.mx.candy.alumno.entidad.AlumnoEntidad;
-import com.mx.candy.alumno.entidad.CursoCobroEntidad;
-import com.mx.candy.alumno.entidad.CursoEntidad;
-import com.mx.candy.alumno.entidad.ProgramaEntidad;
-import com.mx.candy.alumno.modelo.AlumnoModelo;
+import com.mx.candy.alumno.entidad.*;
 import com.mx.candy.alumno.modelo.CobroModelo;
 import com.mx.candy.alumno.modelo.CursoModelo;
 import com.mx.candy.alumno.validacion.NuevoCursoValidacion;
@@ -18,12 +14,16 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaUpdate;
 import javax.persistence.criteria.Root;
 import javax.validation.Valid;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+/**
+ * Los cursos que pertenece a los alumnos.
+ * @author Antonio Francisco Alonso Valerdi
+ * @since 0.1
+ */
 @Stateless
 public class CursoSesionBean {
 
@@ -36,19 +36,30 @@ public class CursoSesionBean {
     @Inject
     private ValidadorSessionBean validadorSessionBean;
 
+    /**
+     * Busca todos los cursos.
+     * @return Coleción de {@link CursoModelo}.
+     */
     public List<CursoModelo> busca() {
         return entityManager.createNamedQuery("CursoEntidad.busca", CursoEntidad.class).getResultList()
                 .stream().map(CursoModelo::new).collect(Collectors.toList());
     }
 
-    public List<CobroModelo> buscaCobro(@NotNull Integer id) {
-        return entityManager.createNamedQuery("CursoEntidad.buscaCobros", CursoCobroEntidad.class)
-                .setParameter("id", id)
-                .getResultList().stream().map(cursoCobroEntidad -> {
-                    return new CobroModelo(cursoCobroEntidad.getCobroEntidad());
-                }).collect(Collectors.toList());
+    /**
+     * Busca un curso por identificador, incluye una coleción de {@link CobroModelo} con los montos por curso.
+     * @param id Identificador del curso.
+     * @return Datos localizados en un objecto del tipo {@link CursoModelo}.
+     */
+    public CursoModelo buscaCobro(@NotNull Integer id) {
+        logger.fine(id.toString());
+        return new CursoModelo(entityManager.createNamedQuery("CursoEntidad.buscaCobros", CursoEntidad.class)
+                .setParameter("id", id).getSingleResult());
     }
 
+    /**
+     * Crea un nuevo Curso, la lleve generada de dicho curso se encuentra lcoalizada en el campo id de {@link CursoModelo}.
+     * @param cursoModelo Datos del curso a ser creado.
+     */
     public void inserta(@NotNull CursoModelo cursoModelo) {
         validadorSessionBean.validacion(cursoModelo, NuevoCursoValidacion.class);
         logger.fine(cursoModelo.toString());
@@ -64,12 +75,22 @@ public class CursoSesionBean {
         cursoModelo.setId(cursoEntidad.getId());
     }
 
+    /**
+     * Elimina un curso.
+     * @param id Identtificador del curso.
+     */
     public void elimina(@NotNull Integer id) {
         logger.fine(id.toString());
         entityManager.remove(entityManager.find(CursoEntidad.class, id));
     }
 
+    /**
+     * Actualiza un curso.
+     * @param cursoModelo Datos del curso a ser actualizado.
+     * @return
+     */
     public int actualiza(@NotNull @Valid CursoModelo cursoModelo) {
+        logger.fine(cursoModelo.toString());
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaUpdate<CursoEntidad> criteriaUpdate = criteriaBuilder.createCriteriaUpdate(CursoEntidad.class);
         Root<CursoEntidad> root = criteriaUpdate.from(CursoEntidad.class);

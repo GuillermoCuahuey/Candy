@@ -60,13 +60,19 @@ public class CursoSesionBeanTest {
 
     @Test
     public void buscaCostos() {
-        List<CobroModelo> cobroModeloLista = cursoSesionBean.buscaCobro(1);
-        assertNotNull(cobroModeloLista);
-        assertFalse(cobroModeloLista.isEmpty());
-        cobroModeloLista.forEach(cobroModelo -> {
+        CursoModelo cursoModelo = cursoSesionBean.buscaCobro(1);
+        assertNotNull(cursoModelo);
+        assertNotNull(cursoModelo.getBeca());
+        assertNotNull(cursoModelo.getGrado());
+        assertNotNull(cursoModelo.getGrupo());
+        assertNotNull(cursoModelo.getFin());
+        assertNotNull(cursoModelo.getInicio());
+        assertNotNull(cursoModelo.getCobroModeloLista());
+        assertFalse(cursoModelo.getCobroModeloLista().isEmpty());
+        cursoModelo.getCobroModeloLista().forEach(cobroModelo -> {
             assertNotNull(cobroModelo);
-            assertNotNull(cobroModelo.getMonto());
             assertNotNull(cobroModelo.getDescripcion());
+            assertNotNull(cobroModelo.getMonto());
         });
     }
 
