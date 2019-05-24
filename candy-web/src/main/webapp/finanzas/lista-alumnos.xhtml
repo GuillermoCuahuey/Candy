@@ -12,11 +12,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets">
-<ui:composition template="/templates/template.xhtml">
+<ui:composition template="/modelo/modelo.xhtml">
     <ui:define name="contenido">
-        <div class="sc-fab-page-wrapper">
-            <h:link outcome="agregar" styleClass="sc-fab sc-fab-large sc-fab-primary"><i class="mdi mdi-plus"/></h:link>
-        </div>
+        <h:button styleClass="uk-button uk-button-primary" value="Agregar" outcome="agregar"/>
     </ui:define>
 </ui:composition>
 </html>

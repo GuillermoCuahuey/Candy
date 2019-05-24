@@ -54,7 +54,6 @@ public class CobroSesionBeanTest {
         cobroModelo.setClave((short)1);
         cobroModelo.setDescripcion("Inscripcion");
         cobroModelo.setMonto((float)10000.01);
-        int modificados = cobroSesionBean.actualiza(cobroModelo);
-        assertFalse(modificados == 0);
+        cobroSesionBean.actualiza(1,(short)1,(float)10000.01);
     }
 }

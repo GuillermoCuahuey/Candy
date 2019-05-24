@@ -6,7 +6,7 @@
 
     <groupId>com.mx.candy</groupId>
     <artifactId>candy</artifactId>
-    <version>0.1</version>
+    <version>0.2</version>
     <modules>
         <module>candy-nucleo</module>
         <module>candy-finanzas</module>
@@ -28,6 +28,16 @@
         <developer>
             <name>Guillermo Cuahuey Estrada</name>
             <email>cu.es.guillermo@nahtechnology.com</email>
+            <roles>
+                <role>Administrador de servidores</role>
+            </roles>
+        </developer>
+        <developer>
+            <name>Antonio Francisco Alonso Valerdi</name>
+            <email>antonio.alonso@nahtechnology.com</email>
+            <roles>
+                <role>Arquitecto</role>
+            </roles>
         </developer>
     </developers>
 
